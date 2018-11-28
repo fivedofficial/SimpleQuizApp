@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import java.util.Random;
 
+import static www.fived.pk.simplequizapp.CategorySelection.selectedcategory;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -20,10 +22,14 @@ public class MainActivity extends AppCompatActivity {
 
 
     private Question mQuestion =  new Question();
+    private QuestionTwo mQuestionTwo = new QuestionTwo();
 
     private String mAnswer;
     private int mScore = 0;
+
+
     private int mQuestionLength = mQuestion.myQuestion.length;
+    private int mQuestionLengthTwo = mQuestionTwo.myQuestionTwo.length;
 
     Random r;
 
@@ -48,7 +54,13 @@ public class MainActivity extends AppCompatActivity {
 
         score.setText("Score: " + mScore);
 
-        updateCurrentQuestion(r.nextInt(mQuestionLength));
+        if (selectedcategory == "category1"){
+            updateCurrentQuestion(r.nextInt(mQuestionLength));
+        }else if(selectedcategory == "category2"){
+            updateCurrentQuestionTwo(r.nextInt(mQuestionLengthTwo));
+        }
+
+
 
         answer1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +69,13 @@ public class MainActivity extends AppCompatActivity {
                 if(answer1.getText() == mAnswer){
                     mScore++;
                     score.setText("Score: " + mScore);
-                    updateCurrentQuestion(r.nextInt(mQuestionLength));
+
+                    if (selectedcategory == "category1"){
+                        updateCurrentQuestion(r.nextInt(mQuestionLength));
+                    }else if(selectedcategory == "category2"){
+                        updateCurrentQuestionTwo(r.nextInt(mQuestionLengthTwo));
+                    }
+
                 }else{
                     gameisover();
                 }
@@ -72,7 +90,13 @@ public class MainActivity extends AppCompatActivity {
                 if(answer2.getText() == mAnswer){
                     mScore++;
                     score.setText("Score: " + mScore);
-                    updateCurrentQuestion(r.nextInt(mQuestionLength));
+
+                    if (selectedcategory == "category1"){
+                        updateCurrentQuestion(r.nextInt(mQuestionLength));
+                    }else if(selectedcategory == "category2"){
+                        updateCurrentQuestionTwo(r.nextInt(mQuestionLengthTwo));
+                    }
+
                 }else{
                     gameisover();
                 }
@@ -88,7 +112,13 @@ public class MainActivity extends AppCompatActivity {
                 if(answer3.getText() == mAnswer){
                     mScore++;
                     score.setText("Score: " + mScore);
-                    updateCurrentQuestion(r.nextInt(mQuestionLength));
+
+                    if (selectedcategory == "category1"){
+                        updateCurrentQuestion(r.nextInt(mQuestionLength));
+                    }else if(selectedcategory == "category2"){
+                        updateCurrentQuestionTwo(r.nextInt(mQuestionLengthTwo));
+                    }
+
                 }else{
                     gameisover();
                 }
@@ -104,7 +134,13 @@ public class MainActivity extends AppCompatActivity {
                 if(answer4.getText() == mAnswer){
                     mScore++;
                     score.setText("Score: " + mScore);
-                    updateCurrentQuestion(r.nextInt(mQuestionLength));
+
+                    if (selectedcategory == "category1"){
+                        updateCurrentQuestion(r.nextInt(mQuestionLength));
+                    }else if(selectedcategory == "category2"){
+                        updateCurrentQuestionTwo(r.nextInt(mQuestionLengthTwo));
+                    }
+
                 }else{
                     gameisover();
                 }
@@ -125,11 +161,10 @@ public class MainActivity extends AppCompatActivity {
                         finish();
                     }
                 })
-                .setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Back to Selection", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
-
+                            onBackPressed();
                     }
                 });
         AlertDialog alertDialog = alertDialogbuilder.create();
@@ -148,6 +183,22 @@ public class MainActivity extends AppCompatActivity {
         answer4.setText(mQuestion.getChoice4(i));
 
         mAnswer = mQuestion.getCorrectAnswer(i);
+
+
+
+    }
+
+
+    private void updateCurrentQuestionTwo(int i) {
+
+        question.setText(mQuestionTwo.getQuestionTwo(i));
+
+        answer1.setText(mQuestionTwo.getChoice1(i));
+        answer2.setText(mQuestionTwo.getChoice2(i));
+        answer3.setText(mQuestionTwo.getChoice3(i));
+        answer4.setText(mQuestionTwo.getChoice4(i));
+
+        mAnswer = mQuestionTwo.getCorrectAnswer(i);
 
 
 

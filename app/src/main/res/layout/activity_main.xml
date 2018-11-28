@@ -56,9 +56,14 @@
         android:id="@+id/question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/answer4"
         android:layout_below="@+id/score"
+        android:layout_above="@+id/answer4"
         android:gravity="center"
         android:textSize="24dp"
         android:text="Question" />
+
+
+
+
+
 </RelativeLayout>
